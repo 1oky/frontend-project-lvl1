@@ -5,6 +5,7 @@ import { questionGenerate } from './brain-even.js';
 import calculateGame from './brain-calc.js';
 import gcd from './brain-gcd.js';
 import brainProgression from './brain-progression.js';
+import brainPrimeGame from './brain-prime.js';
 
 console.log('Welcome to the Brain Games!');
 const userName = readlineSync.question('May I have your name?');
@@ -69,6 +70,31 @@ for (let i = 0; i < 3; i += 1) {
     console.log('Correct!');
   } else {
     console.log(`${progressionAnswer} is wrong answer ;(. Correct answer was ${hidenNum}!`);
+    console.log(`Let's try again, ${userName}`);
+    break;
+  }
+  console.log(`Congratulations, ${userName}!`);
+}
+
+console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+for (let i = 0; i < 3; i += 1) {
+  const primeGame = brainPrimeGame();
+  const primeNumbers = primeGame[0];
+  let rightAnswer = 'yes';
+  console.log(`Question: ${primeGame[1]}`);
+  for (let a = 0; a <= primeGame[0].length; a += 1) {
+    if ((primeNumbers[a]) !== primeGame[1]) {
+      rightAnswer = 'no';
+    } else {
+      rightAnswer = 'yes';
+      break;
+    }
+  }
+  const userAnswer = readlineSync.question('Your answer:');
+  if (userAnswer === rightAnswer) {
+    console.log('Correct');
+  } else {
+    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer}!`);
     console.log(`Let's try again, ${userName}`);
     break;
   }
